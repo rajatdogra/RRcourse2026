@@ -56,3 +56,44 @@ s6_s7   <- round(got$avg_viewers[7] - got$avg_viewers[6], 2)
 ```
 
 *Game of Thrones* debuted to an average of `r min_v` million viewers in Season 1 and peaked at `r max_v` million in Season 8 — a total increase of `r growth` million viewers, or `r pct`% over the show's entire run.
+
+## Viewership Over Time
+
+```{r}
+#| label: fig-viewership
+#| fig-cap: "Average US viewers per episode by season (millions)"
+ggplot(got, aes(x = season, y = avg_viewers)) +
+  geom_line(colour = "#8B0000", linewidth = 1.2) +
+  geom_point(colour = "#8B0000", size = 3) +
+  scale_x_continuous(breaks = 1:8, labels = paste0("S", 1:8)) +
+  labs(
+    title = "Game of Thrones US Viewership by Season",
+    x     = "Season",
+    y     = "Average Viewers (millions)"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+## Season-to-Season Changes
+
+```{r}
+#| label: fig-changes
+#| fig-cap: "Change in average viewers relative to the previous season (millions)"
+got |>
+  mutate(change = avg_viewers - lag(avg_viewers)) |>
+  filter(!is.na(change)) |>
+  ggplot(aes(x = season, y = change, fill = change > 0)) +
+  geom_col(show.legend = FALSE, width = 0.6) +
+  scale_fill_manual(values = c("TRUE" = "#2E8B57", "FALSE" = "#8B0000")) +
+  scale_x_continuous(breaks = 2:8, labels = paste0("S", 2:8)) +
+  labs(
+    title = "Season-to-Season Viewership Change",
+    x     = "Season",
+    y     = "Change in Avg. Viewers (millions)"
+  ) +
+  theme_minimal(base_size = 13)
+```
+
+## Observations
+
+Viewership for *Game of Thrones* grew almost every season. The largest single jump came between Seasons 6 and 7, when average viewers rose by `r s6_s7` million. The one near-flat transition was between Seasons 4 and 5, where the change was just `r s4_s5` million. By the final season the show had attracted `r max_v` million average viewers per episode — `r pct`% more than when it first aired.
