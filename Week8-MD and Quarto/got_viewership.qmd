@@ -1,0 +1,21 @@
+---
+title: "Game of Thrones: Viewership Analysis"
+author: "Rajat Dogra"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-title: "Contents"
+    theme: cosmo
+execute:
+  echo: false
+---
+
+## About the Show
+
+*Game of Thrones* is an American fantasy drama television series created by David Benioff and D. B. Weiss for HBO. Based on George R. R. Martin's novel series *A Song of Ice and Fire*, the show premiered on April 17, 2011, and concluded on May 19, 2019, spanning eight seasons and 73 episodes.
+
+Set in the fictional continents of Westeros and Essos, *Game of Thrones* follows several noble houses competing for the Iron Throne of the Seven Kingdoms, while an ancient threat stirs beyond a massive wall in the north. The series became one of the most-watched programmes in HBO history and won a record 59 Primetime Emmy Awards during its run.
+
+![Game of Thrones title card (source: Wikipedia)](https://upload.wikimedia.org/wikipedia/commons/2/26/Game_of_thrones_title_card.jpg){fig-alt="Game of Thrones title card" width=500}
