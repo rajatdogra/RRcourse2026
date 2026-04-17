@@ -19,3 +19,40 @@ execute:
 Set in the fictional continents of Westeros and Essos, *Game of Thrones* follows several noble houses competing for the Iron Throne of the Seven Kingdoms, while an ancient threat stirs beyond a massive wall in the north. The series became one of the most-watched programmes in HBO history and won a record 59 Primetime Emmy Awards during its run.
 
 ![Game of Thrones title card (source: Wikipedia)](https://upload.wikimedia.org/wikipedia/commons/2/26/Game_of_thrones_title_card.jpg){fig-alt="Game of Thrones title card" width=500}
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(knitr)
+
+got <- tibble(
+  season    = 1:8,
+  year      = c(2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019),
+  avg_viewers = c(2.52, 3.80, 4.97, 6.84, 6.88, 7.69, 10.26, 11.99)
+)
+```
+
+## Viewership Statistics
+
+The table below summarises the average number of US viewers (in millions) per episode for each season, as reported on Wikipedia.
+
+```{r}
+#| label: tbl-summary
+#| tbl-cap: "Average US viewership per episode by season (millions)"
+got |>
+  rename(Season = season, Year = year, `Avg. Viewers (M)` = avg_viewers) |>
+  kable()
+```
+
+```{r}
+#| include: false
+min_v   <- min(got$avg_viewers)
+max_v   <- max(got$avg_viewers)
+growth  <- round(max_v - min_v, 2)
+pct     <- round((max_v - min_v) / min_v * 100, 0)
+s4_s5   <- round(got$avg_viewers[5] - got$avg_viewers[4], 2)
+s6_s7   <- round(got$avg_viewers[7] - got$avg_viewers[6], 2)
+```
+
+*Game of Thrones* debuted to an average of `r min_v` million viewers in Season 1 and peaked at `r max_v` million in Season 8 — a total increase of `r growth` million viewers, or `r pct`% over the show's entire run.
